@@ -29,6 +29,13 @@
 > This is some quotes
 - Divider:
 	+ How to: ---
+- Table:
+Example:
+
+| First col | Second col | Third col |
+| :--: | ---- | ---- |
+| example | example | example |
+
 ---
 ### 3/ Lists
 - Check box: ctrl + l or - [ ]
