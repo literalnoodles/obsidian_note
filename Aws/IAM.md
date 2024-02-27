@@ -23,7 +23,7 @@
 		- Principal: account/user/role to apply
 		- Action: list of actions this policy allows or deny
 		- Resource: list of resources
-		- Condition: conditions for when to apply or not (optional)
+		- Condition: conditions for when to apply or not (optional).
 ## IAM MFA:
 - Password:
 	- Set a minimum password length
