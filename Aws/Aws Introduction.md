@@ -13,7 +13,7 @@ https://infrastructure.aws
 - [[Aws Edge Locations]] / Points of Presence
 ### AWS Console
 - Global Services:
-	- [[IAM]]
+	- [[IAM & AWS CLI]]
 	- Routes 53 (DNS)
 	- CloudFront (CDN)
 	- WAF (Firewall)

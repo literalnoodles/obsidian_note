@@ -1,5 +1,5 @@
 #aws #aws-iam #aws-service
-# Introduction
+# IAM
 ## Users and groups
 - IAM = Identity & Access Management, ==Global Service==
 - **Root account** is created by default, shouldn't be used or shared
@@ -46,3 +46,18 @@
 			- Support multiple root and IAM users using 1 device
 		- Hardware Key Fob MFA device
 		- Hardware Key Fob MFA device for Aws GovCloud
+## IAM Roles for Services
+- To give permissions to AWS Services
+- Example: EC2 Instance Roles, Lambda function roles
+## IAM Security Tools
+- IAM Credentials Report (account-level): list all accounts's users and status credential
+- IAM Access Advisor (user-level): show permission granted to a user and last accessed
+# AWS CLI
+
+- 3 way to access AWS:
+	- AWS Management Console (protected by password + MFA)
+	- AWS CLI: protected by access key
+	- AWS SDK: for code, protected by access key
+- Access key:
+	- Generated in AWS Console
+	- Like password
