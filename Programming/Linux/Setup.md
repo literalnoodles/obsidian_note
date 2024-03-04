@@ -26,6 +26,9 @@
 </match>  
 ```
 
+### Default windows boot
+https://unix.stackexchange.com/questions/639010/set-default-boot-entry-to-windows-instead-of-fedora
+
 ### Vscode
 - Fix menu bar (Settings -> Search for "Title bar style" -> set to custom)
 ### Obsidian

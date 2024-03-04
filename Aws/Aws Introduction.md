@@ -18,7 +18,7 @@ https://infrastructure.aws
 	- CloudFront (CDN)
 	- WAF (Firewall)
 - Region-scoped Services:
-	- EC2
+	- [[EC2]]
 	- Elastic Beanstalk
 	- Lambda
 	- Rekognition
