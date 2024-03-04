@@ -29,4 +29,31 @@
 ### Vscode
 - Fix menu bar (Settings -> Search for "Title bar style" -> set to custom)
 ### Obsidian
-- Clone using this (https://<PERSONAL_ACCESS_TOKEN>@github.com/<USERNAME>/<REPO>.git)
+- Clone using this
+```
+https://<PERSONAL_ACCESS_TOKEN>@github.com/<USERNAME>/<REPO>.git
+```
+
+### Useful commands
+- check dns:
+```bash
+$ dig @dns domain
+```
+- networking
+```bash
+$ resolvectl
+```
+
+```bash
+$ systemctl status systemd-resolved.service
+```
+- clear fontcache
+```bash
+$ fc-cache -fv
+```
+### Things that I changed
+- Add dns: /etc/systemd/resolved.conf.d/dns_servers.conf (https://wiki.archlinux.org/title/systemd-resolved)
+- Modify fonts: ~/.local/share/fonts
+- Firefox homepage: /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js
+- nvidia-drm.modeset=1
+- firefox config & /etc/environment (https://github.com/elFarto/nvidia-vaapi-driver)
