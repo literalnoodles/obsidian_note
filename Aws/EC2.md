@@ -140,7 +140,37 @@
 ### Which options?
 ![[Pasted image 20240305214325.png]]
 ## EC2 Spot Instance & Spot Fleet
+### Spot Instance
+- Can get discount up to 90% compared to On-Demand
+- Define a max spot price and keep the instance while current spot price < max:
+- Hourly spot prices varies based on offer and capacity
+- If current price > max, have 2 minutes to:
+	- Stop instance (can be restart later)
+	- Terminate instance
+- Spot block:
+	- Block instance during timeframe (1-6 hours)
+	- In some case might still be claimed
+- Use for batch jobs, data analysis, workloads that resilient to failure
+- Not good for critical jobs and databases
+- How to terminate spot instance:
+	- ==First cancel a Spot Request, then terminate Instance associated with it==
+	- Canceling Spot Request does not terminate Instance
+	- Can only cancel Spot Instance requests that are **open, active, or disabled**
+![[Pasted image 20240306002724.png]]
 
+![[Pasted image 20240306002746.png]]
+### Spot Fleets
+- Spot Fleets = set of Spot Instances + (optional) On-Demand Instances
+- Will try to meet target capacity with price constrains:
+	- Define launch pools: instance type: (m5.large), OS, AZ
+	- Can have multiple launch pools
+	- Stop launching instances when reach capacity or max cost
+- ==Strategy to allocate Spot Instances:==
+	- lowest Price: from the pool with lowest price (cost optimization, short workloads)
+	- diversified: distributed across all pools (great for availability, long workloads)
+	- capacityOptimized: pool with optimal capacity for number of instances
+	- priceCapacityOptimized (recommended): pools with highest capacity available, then select pool from that with lowest price (best for most workloads)
+- Allow to automatically request Spot Instances with lowest prices
 ## Others
 - [[IAM & AWS CLI#IAM Roles for Services|Instance role]]: provide access to AWS cli on EC2 instance
 

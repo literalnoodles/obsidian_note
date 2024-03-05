@@ -60,3 +60,20 @@ $ fc-cache -fv
 - Firefox homepage: /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js
 - nvidia-drm.modeset=1
 - firefox config & /etc/environment (https://github.com/elFarto/nvidia-vaapi-driver)
+- Qudelix rule (/etc/udev/rules.d):
+```
+# 96Hz
+KERNEL=="hidraw*", ATTRS{idVendor}=="0a12", ATTRS{idProduct}=="4003", MODE="0666", GROUP="prdox"
+# 88.2Hz
+KERNEL=="hidraw*", ATTRS{idVendor}=="0a12", ATTRS{idProduct}=="4004", MODE="0666", GROUP="prdox"
+# 48Hz
+KERNEL=="hidraw*", ATTRS{idVendor}=="0a12", ATTRS{idProduct}=="4005", MODE="0666", GROUP="prdox"
+# 44.1Hz
+KERNEL=="hidraw*", ATTRS{idVendor}=="0a12", ATTRS{idProduct}=="4006", MODE="0666", GROUP="prdox"
+# 44.1Hz/48/88.2/96Khz
+KERNEL=="hidraw*", ATTRS{idVendor}=="0a12", ATTRS{idProduct}=="4007", MODE="0666", GROUP="prdox"
+# 48Hz with Mic
+KERNEL=="hidraw*", ATTRS{idVendor}=="0a12", ATTRS{idProduct}=="4125", MODE="0666", GROUP="prdox"
+# 44.1Hz with Mic
+KERNEL=="hidraw*", ATTRS{idVendor}=="0a12", ATTRS{idProduct}=="4126", MODE="0666", GROUP="prdox"
+```
