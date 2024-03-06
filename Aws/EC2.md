@@ -173,5 +173,68 @@
 - Allow to automatically request Spot Instances with lowest prices
 ## Others
 - [[IAM & AWS CLI#IAM Roles for Services|Instance role]]: provide access to AWS cli on EC2 instance
+# Solution Architect Associate Level
+
+## Private & Public  & Elastic IP
+### Private vs Public
+- 2 type:
+	- IPv4
+		- Most common
+		- allows 3.7 billions different address
+	- IPv6
+		- Newer
+		- Solve problems for IoT
+### Elastic IP
+- Stop and start EC2 can make it change its public IP
+- If needed fixed public IP, you need Elastic IP
+- Elastic IP is public IP you own as long as you don't delete
+- Can be attached to 1 instance at a time
+- Can mask the failure of an instance by remapping it to other working instance
+- Can have 5 Elastic IP in your account (but can be increase)
+- Try to ==avoid== Elastic IP:
+	- Often reflect poor architecture
+	- Instead, use a random public IP and register DNS name for it
+	- Or using a Load Balancer and not use public IP (best pattern)
+## Placement Groups
+- Help control EC2 Instance Placement strategy
+- Strategy:
+	- Cluster: low latency group in a single AZ (high performance & high risk)
+		- Great network
+		- If the rack(hardware) fails, all instances fail
+		- Use case:
+			- Big Data job
+			- Low latency & high throughput application
+	- Spread: spread across hardware (max 7 instances per group per AZ), for critical applications
+		- Pros:
+			- Span across AZ
+			- Reduce risk
+			- Instances on different hardware
+		- Cons:
+			- Max 7 instances per AZ per placement group
+		- Use:
+			- App need high availability
+			- Critical applications
+	- Partitions: spread across many different partitions within an AZ. (scales to 100 instances per group) -> Hadoop, Cassandra, Kafka
+		- Up to 7 partitions per AZ
+		- Span multiple AZ
+		- Up to 100s instance per group
+		- Instances in different partition are safe from eachother
+		- Can access partition information
+		- Use case: Hadoop, Cassandra, Kafka
+![[Pasted image 20240306234845.png]]
+**Spread**
+![[Pasted image 20240306235353.png]]
+**Partition**
+### Elastic Network Interface (ENI)
+- Is a logical component in VPC that reprenses a virtual network card
+- Consists of:
+	- Private IPv4, 1 or more secondary IPv4
+	- 1 Elastic IP (IPv4)  per private IPv4
+	- 1 Public IP
+	- 1 or more Security Groups
+	- A MAC address
+- Can be create independently and attach them on EC2 for failover
+- Bound to 1 AZ
+
 
 #ec2
