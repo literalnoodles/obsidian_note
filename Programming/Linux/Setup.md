@@ -25,7 +25,8 @@
 </edit>  
 </match>  
 ```
-
+- Hinting: Full -> None
+- Sub-pixel order: None -> RGB
 ### Default windows boot
 https://unix.stackexchange.com/questions/639010/set-default-boot-entry-to-windows-instead-of-fedora
 

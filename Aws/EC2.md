@@ -1,4 +1,4 @@
-# Introduction
+# Fundamentals
 ---
 ## Basic
 - EC2 = Elastic Compute Cloud
@@ -225,7 +225,7 @@
 **Spread**
 ![[Pasted image 20240306235353.png]]
 **Partition**
-### Elastic Network Interface (ENI)
+## Elastic Network Interface (ENI)
 - Is a logical component in VPC that reprenses a virtual network card
 - Consists of:
 	- Private IPv4, 1 or more secondary IPv4
@@ -235,6 +235,60 @@
 	- A MAC address
 - Can be create independently and attach them on EC2 for failover
 - Bound to 1 AZ
+## EC2 Hibernate
+Instance state:
+- Stop: data on disk (EBS) is kept intact
+- Terminate: EBS volumes is lost
+- Hibernate:
+	- RAM state is preserved (is written to a file in the root EBS volume)
+	- Instance boot will be faster
+	- The root EBS volume must be encrypted
+Use case:
+- Long running services
+- Saving RAM state
+- Services take time to init
+Good to know:
+- RAM size < 150gb
+- Not support bare metal instances
+- Root volume must be EBS, encrypted, not instance store, large
+- Available for OnDemand, Reserved and Spot instances
+- Cannot be hibernated for more than 60 days
 
-
+# Instance Storage
+## EBS Overview
+What's an EBS volume:
+- EBS volume is a network drive attach to instances while running
+- Allow instances to persist data, even after termination
+- Can only mounted to one instances at a time (CCP level)
+- Bound to specific AZ
+- Analogy: "network USB stick"
+EBS volume:
+- Is a network drive:
+	- Use network to communicate instance, can have latency
+	- Can be detached and attached to others
+- Locked to 1 AZ:
+	- EBS from AZ 1 cannot be bound to AZ 2
+	- To move volume across, need to snapshot
+- Have a provisioned capacity (size in GBs, IOPS)
+	- Get billed for all provisioned capacity
+	- Can increase capacity over time
+EBS delete on termination attribute (#ask_on_exam):
+- Control  EBS behavior when instance terminates:
+	- Default: root EBS is deleted
+	- Default: other EBS is not deleted
+- Can be controlled by AWS console/ CLI
+- Use case: preserve root volume when instance is terminated
+## EBS Snapshot
+- Make backup of EBS volume at a point in time
+- Not necessary to detach volume to snapshot but recommended
+- Can copy across AZ or region
+- Features:
+	- Snapshot Archive:
+		- 75% cheaper
+		- take 24-72 hours to restoring the archive
+	- Recycle Bin:
+		- Setup rules to retain deleted snapshots so you can recover
+		- Specify retention (1 day to 1 year)
+	- Fast snapshot Restore (FSR):
+		- Force full init to have no latency on first use (cost $)
 #ec2
