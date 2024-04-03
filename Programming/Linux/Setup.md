@@ -78,3 +78,10 @@ KERNEL=="hidraw*", ATTRS{idVendor}=="0a12", ATTRS{idProduct}=="4125", MODE="0666
 # 44.1Hz with Mic
 KERNEL=="hidraw*", ATTRS{idVendor}=="0a12", ATTRS{idProduct}=="4126", MODE="0666", GROUP="prdox"
 ```
+
+ - Pipewire (/usr/share/pipewire/pipewire.conf)
+```
+ #default.clock.allowed-rates = [ 48000 ]
+ -> #default.clock.allowed-rates = [ 48000 44100 88200 96000 ]
+```
+restart using systemctl --user restart pipewire.service
