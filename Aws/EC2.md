@@ -316,7 +316,7 @@ EBS delete on termination attribute (#ask_on_exam):
 ## EBS Volume Type
 - EBS volume come in 6 types:
 	- gp2/gp3 (SSD): general purpose SSD volume balances price/performance for wide variety of workloads
-	- io1/op2 (SSD): highest performance SSD volume for mission-critical low-latency + high throughput workloads
+	- io1/io2 (SSD): highest performance SSD volume for mission-critical low-latency + high throughput workloads
 	- st1 (HDD): low cost HDD volume designed for frequently access, throughput-intensive workloads
 	- sc1 (HDD): lowest cost HDD volume designed for less frequently access workloads
 - Characterized by Size | Throughput | IOPS
@@ -411,4 +411,21 @@ EBS delete on termination attribute (#ask_on_exam):
 		- Standard: multi-AZ, great for prod
 		- One Zone: One AZ, great for dev, backup enabled by default, compatible with IA (EFS OneZone-IA)
 		- Over 90% in cost savings
+## EFS vs EBS
+- EBS volumes:
+	- 1 instance (except multi attach io1/ io2)
+	- Are locked at AZ level
+	- gp2: IO increase if disk size increase
+	- io1: can increase IO indefinitely
+- To migrate EBS across AZ:
+	- Take a snapshot
+	- Restore snapshot to another AZ
+	- EBS backup use IO so shouldn't run when application handling a lot of traffic
+- Root EBS Volumes of instance will get terminated if the instance is terminated by default (but can be changed)
+- EFS:
+	- Mounting 100s of instance across AZ
+	- EFS share website files (WordPress)
+	- Only for Linux (POSIX)
+	- Higher price point than EBS
+	- Can leverage EFS-IA for cost saving
 #ec2
